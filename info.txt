@@ -1,0 +1,5 @@
+RUN FRONTEND
+- from /frontend run 'pnpm run dev'
+
+RUN BACKEND
+ - from /backend run 'uvicorn app.main:app'
