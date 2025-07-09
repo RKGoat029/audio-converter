@@ -1,6 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
 import "./home.css";
+
+/* Service */
+import { downloadMedia, getDownloadUrl } from "../../services/audioService.jsx";
 
 const Home = () => {
   const [urlValue, setUrlValue] = useState("");
@@ -8,16 +10,6 @@ const Home = () => {
   const [downloadReady, setDownloadReady] = useState(false);
 
   const handleChange = (e) => setUrlValue(e.target.value);
-
-  async function downloadMedia(link, format = "audio") {
-    try {
-      const res = await axios.get('http://127.0.0.1:8000/download', { params: { link, format } });
-      return res.data;
-    } catch (err) {
-      console.log("Error: " + err);
-      return null;
-    }
-  }
 
   const handleDownload = async () => {
     setDownloadReady(false);
@@ -31,11 +23,9 @@ const Home = () => {
     }
   };
 
-  // This will generate the download link for the file
-  const getDownloadUrl = (filename) => `http://127.0.0.1:8000/download/file/${encodeURIComponent(filename)}`;
-
   return (
     <>
+      <Button />
       <input
         type="text"
         value={urlValue}
@@ -43,7 +33,7 @@ const Home = () => {
         className="input-container"
         placeholder="Enter URL here"
       />
-      <button onClick={handleDownload}>Fetch & Prepare Download</button>
+      <button onClick={handleDownload}>Send!</button>
       {response && response.error && (
         <div style={{ color: "red" }}>{response.error}</div>
       )}
