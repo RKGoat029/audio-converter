@@ -25,7 +25,6 @@ const Home = () => {
 
   return (
     <>
-      <Button />
       <input
         type="text"
         value={urlValue}
