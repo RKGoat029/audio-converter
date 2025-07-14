@@ -1,0 +1,6 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/RKGoat029/audio-converter-front.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/RKGoat029/audio-converter-back.git
